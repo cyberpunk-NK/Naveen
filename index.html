@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Portfolio</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    h1 { color: darkblue; }
+    .chatbox {
+      border: 1px solid #ccc; padding: 10px; width: 300px;
+      position: fixed; bottom: 20px; right: 20px; background: #f9f9f9;
+    }
+    #chat { height: 150px; overflow-y: auto; margin-bottom: 5px; }
+    .user { color: blue; }
+    .bot { color: green; }
+  </style>
+</head>
+<body>
+
+  <h1>My Portfolio</h1>
+
+  <h2>Skills</h2>
+  <p>1. HTML</p>
+  <p>2. CSS</p>
+  <p>3. JavaScript</p>
+  <p>4. Python</p>
+
+  <h2>Projects</h2>
+  <p>1. AI Powered Portfolio</p>
+  <p>2. Online Quiz App</p>
+  <p>3. Student Management System</p>
+
+  <h2>Contact</h2>
+  <p>Email: myemail@example.com</p>
+  <p>Phone: +91 9876543210</p>
+  <p>LinkedIn: linkedin.com/in/myprofile</p>
+
+  <!-- Chatbot -->
+  <div class="chatbox">
+    <div id="chat"></div>
+    <input id="msg" placeholder="Ask me..." />
+    <button onclick="chat()">Send</button>
+  </div>
+
+  <script>
+    function chat() {
+      let msg = document.getElementById("msg").value.toLowerCase();
+      if (!msg) return;
+      add("user", msg);
+
+      let bot = "I didn’t get that. Try asking about 'skills', 'projects' or 'contact'.";
+      if (msg.includes("skills")) bot = "My skills are: HTML, CSS, JavaScript, Python.";
+      if (msg.includes("projects")) bot = "My projects: AI Powered Portfolio, Quiz App, Student Management System.";
+      if (msg.includes("contact")) bot = "You can reach me at myemail@example.com, Phone: +91 9876543210, LinkedIn: linkedin.com/in/myprofile.";
+
+      setTimeout(() => add("bot", bot), 400);
+      document.getElementById("msg").value = "";
+    }
+
+    function add(sender, text) {
+      let div = document.createElement("div");
+      div.className = sender;
+      div.innerText = text;
+      document.getElementById("chat").appendChild(div);
+      document.getElementById("chat").scrollTop = 9999;
+    }
+  </script>
+
+</body>
+</html>
